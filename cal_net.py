@@ -62,7 +62,7 @@ def cal_pccs(x, y,sc):
 
 
 
-rna = pd.read_csv(opt.data,header=0,index_col=0)
+rna = pd.read_csv(opt.rna_data, header=0, index_col=0)
 rna = rna.to_numpy()
 # adj = np.corrcoef(rna)
 # adj = np.around(adj,4)
@@ -81,7 +81,7 @@ for i in range(len(rna)-1):
 
 allmatrix_sp = sparse.csr_matrix(adj)
 
-if sc:
-    sparse.save_npz(opt.output+'sc.npz', allmatrix_sp)
+if opt.sc:
+    sparse.save_npz(opt.outdir+'sc.npz', allmatrix_sp)
 else:
-    sparse.save_npz(opt.output+'bulk.npz', allmatrix_sp)
+    sparse.save_npz(opt.outdir+'bulk.npz', allmatrix_sp)

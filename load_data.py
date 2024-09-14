@@ -25,7 +25,7 @@ from scipy import sparse
 def loadexp(csv_file):
     data = pd.read_csv(csv_file, header=0, index_col=0)
     gene = data.index.tolist()
-    data = data.to_numpy().astype(np.float)
+    data = data.to_numpy().astype(float)
     data = np.transpose(data)
     # data = np.log2(data+1)
     data,y = normalize(data)
@@ -33,7 +33,7 @@ def loadexp(csv_file):
 
 def loadgene(csv_file):
     gene = pd.read_csv(csv_file,header=None,index_col=0)
-    gene = gene.to_numpy().astype(np.float)
+    gene = gene.to_numpy().astype(float)
     return gene
 
 def normalize(X):
