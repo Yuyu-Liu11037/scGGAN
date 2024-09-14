@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import sparse
+from tqdm import tqdm
 import math
 import pandas as pd
 import argparse
@@ -61,14 +62,15 @@ def cal_pccs(x, y,sc):
     return round(pcc,4)
 
 
-
+print("Loading data")
 rna = pd.read_csv(opt.rna_data, header=0, index_col=0)
 rna = rna.to_numpy()
 # adj = np.corrcoef(rna)
 # adj = np.around(adj,4)
 
 adj = np.zeros((len(rna),len(rna)))
-for i in range(len(rna)-1):
+print(f"Finish loading\n")
+for i in tqdm(range(len(rna)-1)):
     if i %100 ==0:
         print(i)
     for j in range(i+1,len(rna)):
